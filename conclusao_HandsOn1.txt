@@ -1,0 +1,12 @@
+
+
+Para este problema nos iremos tentar resolver um problema de predição de problemas relacionados a passagens aéreas. Neste dataset, encontraremos uma serie temporal onde para um dado mês do ano, a tarefa e predizer o número de problemas com passagens aérias em unidades de milhares. Os dados variam de Janeiro/1949 a Dezembro/1960 (12 anos), com 144 observações. O dataset está disponível no link: https://www.kaggle.com/andreazzini/international-airline-passengers.
+
+
+Afim de uma melhor aprendizado da rede, realizaremos uma normalização nos dados. Podemos utilizar a classe MinMaxScaler para esta tarefa, onde a mesma consistem em modificar a escala do dados para um intervalo desejado (o até um número especificado). Logo para o nosso exemplo utilizaremos a escala de 0 até 1.
+Agora nós podemos definir a função de criação do dataset. Essa função consiste de dois argumentos, o dataset e uma valor de **look back** (valor responsável por definir quantos elementos serãm usador para previsão). Por padrão definimos look back = 1. Logo para todo tempo t+1 tentaremos predizzer o mesmo somente com 1 valor t.
+
+Exemplo : Para a série : 112, 118, 132, 129, 121, 135... usando o lookback = 1:
+
+Train Score: 22.78 RMSE
+Test Score: 55.32 RMSE

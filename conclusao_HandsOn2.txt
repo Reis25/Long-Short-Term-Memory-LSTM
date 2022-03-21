@@ -1,0 +1,43 @@
+O dataset também pode ser encontrado no link: https://www.kaggle.com/lakshmi25npathi/imdb-dataset-of-50k-movie-reviews
+
+Depois de carregar o dataset, nós precisamos normalizar o número de palavras em uma comentário, afim de que todos os cometários possuam o mesmo tamanho para modelagem.
+
+O modelo ira aprender que valores que possuem 0 não devem influênciar em sua predição (pois não adicionam nenhuma informação).
+
+Exemplo:
+
+Modelo possuindo sempre 5 entrada temos :
+
+(1,2,3,4,5) => (1,2,3,4,5)
+(1,2,5) => (1,2,5,0,0)
+(1) => (1,0,0,0,0)
+
+Agora podemos definir, compilar e ajustar nosso modelo LSTM. 
+
+ A primeira camada é a camada Embedded que usa 32 vetores de comprimento para representar cada palavra. 
+
+ A próxima camada é a camada LSTM com 100 neurônios.
+
+ Finalmente, porque este é um problema de classificação, usamos uma camada Dense camada de saída com um único neurônio e,
+ 
+ uma função de ativação sigmóide para fazer previsões 0 ou 1 para as duas classes (boas e ruins) no problema.
+
+ Como é um problema de classificação binária, a função de loss é usada como a função binary-crossentrop.
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+embedding (Embedding)        (None, 500, 32)           160000    
+_________________________________________________________________
+dropout (Dropout)            (None, 500, 32)           0         
+_________________________________________________________________
+lstm (LSTM)                  (None, 100)               53200     
+_________________________________________________________________
+dropout_1 (Dropout)          (None, 100)               0         
+_________________________________________________________________
+dense (Dense)                (None, 1)                 101       
+=================================================================
+Total params: 213,301
+Trainable params: 213,301
+Non-trainable params: 0
+
+Accuracy: 83.77%
